@@ -14,7 +14,7 @@ XWorm is a MaaS multifunctional RAT that was first discovered in 2022 with a wid
 <p align="center"> XWorm infection chain </p>
 
 
-### static analysis
+### Static analysis
 this PowerShell script was sort of interesting, if we looked closely we would find them two **[4D 5A]** hex values, which are the magic bytes for the MZ header.
 
 this is a common technique where one of them PEs is just a loader, and the other one is the actual payload.
@@ -39,7 +39,7 @@ and it's a 32bit .NET binary.  i then looked at the binary imports -that were so
 ![image5](/assets/images/xworm/6.PNG)<br>
 
 
-### code analysis
+### Code analysis
 since it's a .NET binary, opened it in DnSpy and went to the EP. and that's what i first found:
 ![image](/assets/images/xworm/7.PNG)
 there was some function that was frequently repeated, after parsing to it, it was so obvious that it was an AES encryption routine, with a 16-byte key length (128-bit)..
@@ -79,7 +79,7 @@ which's a Startup Folder persistence technique.
 xworm is a multi-threaded malware, with separate threads handling persistence, C2/RAT logic, anti-debugging, and watchdog functionality.<br>
 the behavioral analysis also reveals additional capabilities of this RAT.<br>
 
-### behavioral analysis
+### Behavioral analysis
 after setting up my monitoring tools and opening the sample, and analyzing the  behavioral activities, i noticed tons of system changes, registry changes; tons of keys being read/deleted/changed/added,<br>
 logs being deleted, files being added, and shockingly my keystrokes were being keylogged :D.<br>
 here's what i came up with..<br><br>

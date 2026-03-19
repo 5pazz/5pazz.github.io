@@ -32,8 +32,8 @@
 <meta name="generator" content="Jekyll v4.4.1" />
 <meta property="og:title" content="XWorm RAT: Full Malware Analysis &amp; Behavioral Breakdown" />
 <meta property="og:locale" content="en" />
-<meta name="description" content="XWorm RAT XWorm is a MaaS multifunctional RAT that was first discovered in 2022 with a wide range of capabilities. sample hash: e4c179fa5bc03b07e64e65087afcbad04d40475204ebb0a0bc7d77f071222656 malware bazzar: bazaar.abuse.ch/sample/e4c179fa5bc03b07e64e65087afcbad04d40475204ebb0a0bc7d77f071222656 infection chain" />
-<meta property="og:description" content="XWorm RAT XWorm is a MaaS multifunctional RAT that was first discovered in 2022 with a wide range of capabilities. sample hash: e4c179fa5bc03b07e64e65087afcbad04d40475204ebb0a0bc7d77f071222656 malware bazzar: bazaar.abuse.ch/sample/e4c179fa5bc03b07e64e65087afcbad04d40475204ebb0a0bc7d77f071222656 infection chain" />
+<meta name="description" content="XWorm RAT XWorm is a MaaS multifunctional RAT that was first discovered in 2022 with a wide range of capabilities. sample hash: e4c179fa5bc03b07e64e65087afcbad04d40475204ebb0a0bc7d77f071222656 malware bazzar: bazaar.abuse.ch/sample/e4c179fa5bc03b07e64e65087afcbad04d40475204ebb0a0bc7d77f071222656 XWorm infection chain" />
+<meta property="og:description" content="XWorm RAT XWorm is a MaaS multifunctional RAT that was first discovered in 2022 with a wide range of capabilities. sample hash: e4c179fa5bc03b07e64e65087afcbad04d40475204ebb0a0bc7d77f071222656 malware bazzar: bazaar.abuse.ch/sample/e4c179fa5bc03b07e64e65087afcbad04d40475204ebb0a0bc7d77f071222656 XWorm infection chain" />
 <link rel="canonical" href="http://localhost:4000/posts/xworm-full-analysis/" />
 <meta property="og:url" content="http://localhost:4000/posts/xworm-full-analysis/" />
 <meta property="og:site_name" content="7amthereaper" />
@@ -42,7 +42,7 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="XWorm RAT: Full Malware Analysis &amp; Behavioral Breakdown" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2026-02-07T13:49:24+02:00","datePublished":"2026-02-05T12:00:00+02:00","description":"XWorm RAT XWorm is a MaaS multifunctional RAT that was first discovered in 2022 with a wide range of capabilities. sample hash: e4c179fa5bc03b07e64e65087afcbad04d40475204ebb0a0bc7d77f071222656 malware bazzar: bazaar.abuse.ch/sample/e4c179fa5bc03b07e64e65087afcbad04d40475204ebb0a0bc7d77f071222656 infection chain","headline":"XWorm RAT: Full Malware Analysis &amp; Behavioral Breakdown","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/xworm-full-analysis/"},"url":"http://localhost:4000/posts/xworm-full-analysis/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2026-03-18T22:32:08+02:00","datePublished":"2026-02-05T12:00:00+02:00","description":"XWorm RAT XWorm is a MaaS multifunctional RAT that was first discovered in 2022 with a wide range of capabilities. sample hash: e4c179fa5bc03b07e64e65087afcbad04d40475204ebb0a0bc7d77f071222656 malware bazzar: bazaar.abuse.ch/sample/e4c179fa5bc03b07e64e65087afcbad04d40475204ebb0a0bc7d77f071222656 XWorm infection chain","headline":"XWorm RAT: Full Malware Analysis &amp; Behavioral Breakdown","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/xworm-full-analysis/"},"url":"http://localhost:4000/posts/xworm-full-analysis/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -2175,13 +2175,13 @@
 
 <time
   
-  data-ts="1770464964"
+  data-ts="1773865928"
   data-df="ll"
   
     data-bs-toggle="tooltip" data-bs-placement="bottom"
   
 >
-  Feb  7, 2026
+  Mar 18, 2026
 </time>
 
         </span>
@@ -2228,7 +2228,7 @@
   class="readtime"
   data-bs-toggle="tooltip"
   data-bs-placement="bottom"
-  title="933 words"
+  title="925 words"
 >
   <em>5 min</em> read</span>
 
@@ -2267,86 +2267,86 @@
 <em>sample hash: <code class="language-plaintext highlighter-rouge">e4c179fa5bc03b07e64e65087afcbad04d40475204ebb0a0bc7d77f071222656</code></em> <br />
 <em>malware bazzar: <code class="language-plaintext highlighter-rouge">bazaar.abuse.ch/sample/e4c179fa5bc03b07e64e65087afcbad04d40475204ebb0a0bc7d77f071222656</code></em> <br />
  <br />
-<a href="/assets/images/XWorm Infection chain.png" class="popup img-link shimmer"><img src="/assets/images/XWorm Infection chain.png" alt="image" loading="lazy"></a></p>
-<p align="center">infection chain </p>
+<a href="/assets/images/xworm/XWorm Infection chain.png" class="popup img-link shimmer"><img src="/assets/images/xworm/XWorm Infection chain.png" alt="image" loading="lazy"></a></p>
+<p align="center"> XWorm infection chain </p>
 
-<h3 id="static-analysis"><span class="me-2">static analysis</span><a href="#static-analysis" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
-<p>this PowerShell script was sort of interesting, if we looked closely we would find that these two hex values are PE files, because they start with <strong>[4D 5A]</strong>, wwhich are the magic bytes for the MZ header.</p>
+<h3 id="static-analysis"><span class="me-2">Static analysis</span><a href="#static-analysis" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
+<p>this PowerShell script was sort of interesting, if we looked closely we would find them two <strong>[4D 5A]</strong> hex values, which are the magic bytes for the MZ header.</p>
 
 <p>this is a common technique where one of them PEs is just a loader, and the other one is the actual payload.
-<a href="/assets/images/1.PNG" class="popup img-link shimmer"><img src="/assets/images/1.PNG" alt="image" loading="lazy"></a>
-how do we differentiate the loader from the actual payload? if we looked closely we can conclude that <code class="language-plaintext highlighter-rouge">$YHYA</code> is the actual payload, that’s because it was loaded into memory (that simple!), twhich was later injected into RegSvcs.exe, which is the loader.</p>
+<a href="/assets/images/xworm/1.PNG" class="popup img-link shimmer"><img src="/assets/images/xworm/1.PNG" alt="image" loading="lazy"></a>
+how do we differentiate the loader from the actual payload? if we looked closely we can conclude that <code class="language-plaintext highlighter-rouge">$YHYA</code> is the actual payload, that’s because it was loaded into memory (that simple!), which was later injected into RegSvcs.exe, which is the loader.</p>
 
-<p><a href="/assets/images/2.PNG" class="popup img-link shimmer"><img src="/assets/images/2.PNG" alt="image" loading="lazy"></a>
+<p><a href="/assets/images/xworm/2.PNG" class="popup img-link shimmer"><img src="/assets/images/xworm/2.PNG" alt="image" loading="lazy"></a>
 and this a schedule task that runs this script every 2 mins.</p>
 
-<p><a href="/assets/images/3.PNG" class="popup img-link shimmer"><img src="/assets/images/3.PNG" alt="image" loading="lazy"></a>
+<p><a href="/assets/images/xworm/3.PNG" class="popup img-link shimmer"><img src="/assets/images/xworm/3.PNG" alt="image" loading="lazy"></a>
 simple obfuscation. i replaced the “!” signs and saved it as “xworm.file” so I don’t accidentally run it while analyzing the code..</p>
 
-<p><a href="/assets/images/4.png" class="popup img-link shimmer"><img src="/assets/images/4.png" alt="image" loading="lazy"></a></p>
+<p><a href="/assets/images/xworm/4.png" class="popup img-link shimmer"><img src="/assets/images/xworm/4.png" alt="image" loading="lazy"></a></p>
 <p align="center">here are the scans for both files;, first one on the left is the ps script, the second is after extracting the payload.</p>
 <p><br /></p>
 
-<p><a href="/assets/images/5.PNG" class="popup img-link shimmer"><img src="/assets/images/5.PNG" alt="image" loading="lazy"></a>
+<p><a href="/assets/images/xworm/5.PNG" class="popup img-link shimmer"><img src="/assets/images/xworm/5.PNG" alt="image" loading="lazy"></a>
 and it’s a 32bit .NET binary.  i then looked at the binary imports -that were so suspicious-, strings, and intropy -which was kinda high-, and there were so much strings that were encrypted/decoded.
-<a href="/assets/images/6.PNG" class="popup img-link shimmer"><img src="/assets/images/6.PNG" alt="image5" loading="lazy"></a><br /></p>
+<a href="/assets/images/xworm/6.PNG" class="popup img-link shimmer"><img src="/assets/images/xworm/6.PNG" alt="image5" loading="lazy"></a><br /></p>
 
-<h3 id="code-analysis"><span class="me-2">code analysis</span><a href="#code-analysis" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
+<h3 id="code-analysis"><span class="me-2">Code analysis</span><a href="#code-analysis" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
 <p>since it’s a .NET binary, opened it in DnSpy and went to the EP. and that’s what i first found:
-<a href="/assets/images/7.PNG" class="popup img-link shimmer"><img src="/assets/images/7.PNG" alt="image" loading="lazy"></a>
+<a href="/assets/images/xworm/7.PNG" class="popup img-link shimmer"><img src="/assets/images/xworm/7.PNG" alt="image" loading="lazy"></a>
 there was some function that was frequently repeated, after parsing to it, it was so obvious that it was an AES encryption routine, with a 16-byte key length (128-bit)..
-<a href="/assets/images/8.PNG" class="popup img-link shimmer"><img src="/assets/images/8.PNG" alt="image" loading="lazy"></a>
+<a href="/assets/images/xworm/8.PNG" class="popup img-link shimmer"><img src="/assets/images/xworm/8.PNG" alt="image" loading="lazy"></a>
 after that i went to the arguments that were passed to the function,  most likely these were the encrypted data.
-<a href="/assets/images/9.PNG" class="popup img-link shimmer"><img src="/assets/images/9.PNG" alt="image" loading="lazy"></a></p>
+<a href="/assets/images/xworm/9.PNG" class="popup img-link shimmer"><img src="/assets/images/xworm/9.PNG" alt="image" loading="lazy"></a></p>
 
 <p>i then managed to put a BP at the first line and passed over a couple of time and happened what was expected.
-<a href="/assets/images/10.PNG" class="popup img-link shimmer"><img src="/assets/images/10.PNG" alt="image" loading="lazy"></a></p>
+<a href="/assets/images/xworm/10.PNG" class="popup img-link shimmer"><img src="/assets/images/xworm/10.PNG" alt="image" loading="lazy"></a></p>
 
 <p>i created a Watch window and passed the encrypted function arguments to speed up the process and that’s what i found:
-<a href="/assets/images/11.PNG" class="popup img-link shimmer"><img src="/assets/images/11.PNG" alt="image" loading="lazy"></a>
+<a href="/assets/images/xworm/11.PNG" class="popup img-link shimmer"><img src="/assets/images/xworm/11.PNG" alt="image" loading="lazy"></a>
 the first value was a domain -&gt; <code class="language-plaintext highlighter-rouge">"mo1010.duckdns.org"</code> which’s most likely the C2 server.<br />
 the second one <code class="language-plaintext highlighter-rouge">"7000"</code> -&gt; the port.<br />
 the other ones i couldn’t tell exactly what were they,
 except for <code class="language-plaintext highlighter-rouge">"C:\User\MaldevUser\AppData\Roaming"</code>, I assumed this was the path where an instance of the malware would be dropped, because when i first run it, i found it copies itself at the same path.</p>
 
 <p>This code confirms what was mentioned earlier, here it makes an instance of itself at the path:
-<a href="/assets/images/12.PNG" class="popup img-link shimmer"><img src="/assets/images/12.PNG" alt="image" loading="lazy"></a>
+<a href="/assets/images/xworm/12.PNG" class="popup img-link shimmer"><img src="/assets/images/xworm/12.PNG" alt="image" loading="lazy"></a>
 if the file exists, it overwrites it, then sleeps for 1000 seconds. <br />
 why is that? because it’s going to use this copy later for layered persistence techniques.</p>
 
 <p>the first layer was a Scheduled Task persistence mechanism as expected
-<a href="/assets/images/13.PNG" class="popup img-link shimmer"><img src="/assets/images/13.PNG" alt="image" loading="lazy"></a>
+<a href="/assets/images/xworm/13.PNG" class="popup img-link shimmer"><img src="/assets/images/xworm/13.PNG" alt="image" loading="lazy"></a>
 <code class="language-plaintext highlighter-rouge">new ProcessStartInfo("schtasks.exe");</code> //opens schtasks.exe <br />
-<code class="language-plaintext highlighter-rouge">processStartInfo.WindowStyle = ProcessWindowStyle.Hidden;</code> //hidden so the user does not notice any suspicious behaviour.<br />
+<code class="language-plaintext highlighter-rouge">processStartInfo.WindowStyle = ProcessWindowStyle.Hidden;</code> //hidden so the user does not notice any suspicious behavior.<br />
 <code class="language-plaintext highlighter-rouge">/create  /f  /RL HIGHEST  /sc minute  /mo 1</code>  -&gt; creates a task, overwrites an existing task if one is already present, run as highest privileges, and schedule: every minute.</p>
 
 <p>here it’s using Registry as a persistence technique at -&gt; <code class="language-plaintext highlighter-rouge">HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Run</code> , one of the most common Windows auto-start locations
-<a href="/assets/images/14.PNG" class="popup img-link shimmer"><img src="/assets/images/14.PNG" alt="image" loading="lazy"></a></p>
+<a href="/assets/images/xworm/14.PNG" class="popup img-link shimmer"><img src="/assets/images/xworm/14.PNG" alt="image" loading="lazy"></a></p>
 
 <p>this is another layer of persistence technique:
-<a href="/assets/images/15.PNG" class="popup img-link shimmer"><img src="/assets/images/15.PNG" alt="image" loading="lazy"></a>
+<a href="/assets/images/xworm/15.PNG" class="popup img-link shimmer"><img src="/assets/images/xworm/15.PNG" alt="image" loading="lazy"></a>
 which’s a Startup Folder persistence technique.</p>
 
-<p><a href="/assets/images/16.PNG" class="popup img-link shimmer"><img src="/assets/images/16.PNG" alt="image" loading="lazy"></a><br />
+<p><a href="/assets/images/xworm/16.PNG" class="popup img-link shimmer"><img src="/assets/images/xworm/16.PNG" alt="image" loading="lazy"></a><br />
 xworm is a multi-threaded malware, with separate threads handling persistence, C2/RAT logic, anti-debugging, and watchdog functionality.<br />
 the behavioral analysis also reveals additional capabilities of this RAT.<br /></p>
 
-<h3 id="behavioral-analysis"><span class="me-2">behavioral analysis</span><a href="#behavioral-analysis" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
+<h3 id="behavioral-analysis"><span class="me-2">Behavioral analysis</span><a href="#behavioral-analysis" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
 <p>after setting up my monitoring tools and opening the sample, and analyzing the  behavioral activities, i noticed tons of system changes, registry changes; tons of keys being read/deleted/changed/added,<br />
-logs being deleted, files being added, and shockingly my keystrokes was being keylogged.<br />
+logs being deleted, files being added, and shockingly my keystrokes were being keylogged :D.<br />
 here’s what i came up with..<br /><br /></p>
 
-<p>to keep persistency, as we saw at the code analysis section, xowrm copied itself a couple of times at <code class="language-plaintext highlighter-rouge">User\AppData\Roaming</code> and copying itself at startup
-<a href="/assets/images/writefilefilterd.PNG" class="popup img-link shimmer"><img src="/assets/images/writefilefilterd.PNG" alt="image" loading="lazy"></a>
-<a href="/assets/images/ratinroaming folder.PNG" class="popup img-link shimmer"><img src="/assets/images/ratinroaming folder.PNG" alt="image" loading="lazy"></a>
-<a href="/assets/images/startup folder.PNG" class="popup img-link shimmer"><img src="/assets/images/startup folder.PNG" alt="image" loading="lazy"></a><br /><br /></p>
+<p>to keep persistency, as we saw at the code analysis section, xworm copied itself a couple of times at <code class="language-plaintext highlighter-rouge">User\AppData\Roaming</code> also at  startup.
+<a href="/assets/images/xworm/writefilefilterd.PNG" class="popup img-link shimmer"><img src="/assets/images/xworm/writefilefilterd.PNG" alt="image" loading="lazy"></a>
+<a href="/assets/images/xworm/ratinroaming folder.PNG" class="popup img-link shimmer"><img src="/assets/images/xworm/ratinroaming folder.PNG" alt="image" loading="lazy"></a>
+<a href="/assets/images/xworm/startup folder.PNG" class="popup img-link shimmer"><img src="/assets/images/xworm/startup folder.PNG" alt="image" loading="lazy"></a><br /><br /></p>
 
 <p>i also found out that it was keylogging my keystrokes the whole time! and logging it at <code class="language-plaintext highlighter-rouge">User\AppData\Local\temp</code> as <code class="language-plaintext highlighter-rouge">log.tmp</code> 
-<a href="/assets/images/keylogger.PNG" class="popup img-link shimmer"><img src="/assets/images/keylogger.PNG" alt="image" loading="lazy"></a>
+<a href="/assets/images/xworm/keylogger.PNG" class="popup img-link shimmer"><img src="/assets/images/xworm/keylogger.PNG" alt="image" loading="lazy"></a>
 <br /><br /></p>
 
 <p>here it reads these what it called <code class="language-plaintext highlighter-rouge">desktop.ini</code>, this is a simple common technique for vm&amp;sandbox detection.
-<a href="/assets/images/readinginis.PNG" class="popup img-link shimmer"><img src="/assets/images/readinginis.PNG" alt="image" loading="lazy"></a>
+<a href="/assets/images/xworm/readinginis.PNG" class="popup img-link shimmer"><img src="/assets/images/xworm/readinginis.PNG" alt="image" loading="lazy"></a>
 <code class="language-plaintext highlighter-rouge">C:\Users\desktop.ini</code>
 <code class="language-plaintext highlighter-rouge">C:\Users\MaldevUser\Searches\desktop.ini</code> <br />
 <code class="language-plaintext highlighter-rouge">C:\Users\MaldevUser\Contacts\desktop.ini</code> <br />
@@ -2358,11 +2358,11 @@ the malware reads it so it can assume weather it’s in a sandbox/vm or not, are
 it’s also kind of stealthy way of recon, allowing the malware to recon in a low noise <br /><br /></p>
 
 <p>there were so much reg keys created, on of theme is the one at <code class="language-plaintext highlighter-rouge">Run</code> as we saw earlier at the code analysis section
-<a href="/assets/images/run%20presistence.PNG" class="popup img-link shimmer"><img src="/assets/images/run%20presistence.PNG" alt="image" loading="lazy"></a>
+<a href="/assets/images/xworm/run%20presistence.PNG" class="popup img-link shimmer"><img src="/assets/images/xworm/run%20presistence.PNG" alt="image" loading="lazy"></a>
 to keep persistency .</p>
 
-<p>after extracting ProcMon logs, with the help of ProcDot i managed to make this graph of sequence from the process creation and what did xowrm tried to do.
-<a href="/assets/images/procdotgraph sequence.png" class="popup img-link shimmer"><img src="/assets/images/procdotgraph sequence.png" alt="image" loading="lazy"></a>
+<p>after extracting ProcMon logs, with the help of ProcDot i managed to make this graph of sequence from the process creation and what did xworm tried to do.
+<a href="/assets/images/xworm/procdotgraph sequence.png" class="popup img-link shimmer"><img src="/assets/images/xworm/procdotgraph sequence.png" alt="image" loading="lazy"></a>
 the malware reads several Windows registry keys related to internet zone settings to understand the network environment it is running in. 
 these keys help determine:<br />
 -whether the system is part of a local corporate network (Intranet) <br />
@@ -2546,6 +2546,13 @@ or a corporate environment, and adjust its behavior accordingly
           <a href="/posts/xworm-full-analysis/">XWorm RAT: Full Malware Analysis & Behavioral Breakdown</a>
         </li>
       
+        
+        
+        
+        <li class="text-truncate lh-lg">
+          <a href="/posts/brbbot-analysis/">Brbbot: Full Malware analysis</a>
+        </li>
+      
     </ul>
   </section>
   <!-- #access-lastmod -->
@@ -2625,6 +2632,17 @@ or a corporate environment, and adjust its behavior accordingly
 
   
     
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
 
@@ -2634,6 +2652,43 @@ or a corporate environment, and adjust its behavior accordingly
 
 
 
+
+
+  <aside id="related-posts" aria-labelledby="related-label">
+    <h3 class="mb-4" id="related-label">Further Reading</h3>
+    <nav class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4 mb-4">
+      
+        <article class="col">
+          <a href="/posts/brbbot-analysis/" class="post-preview card h-100">
+            <div class="card-body">
+              <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/locale-dateime.js
+-->
+
+
+
+
+<time
+  
+  data-ts="1770285600"
+  data-df="ll"
+  
+>
+  Feb  5, 2026
+</time>
+
+              <h4 class="pt-0 my-2">Brbbot: Full Malware analysis</h4>
+              <div class="text-muted">
+                <p>Brbbot functions as a trojan or bot, it can also be used as a backdoor. sample hash: f9227a44ea25a7ee8148e2d0532b14bb640f6dc52cb5b22a9f4fa7fa037417fa  Quick triage by frisking strings, it gave me a...</p>
+              </div>
+            </div>
+          </a>
+        </article>
+      
+    </nav>
+  </aside>
+  <!-- #related-posts -->
 
 
             
@@ -2651,9 +2706,13 @@ or a corporate environment, and adjust its behavior accordingly
   
 
   
-    <div class="btn btn-outline-primary disabled" aria-label="Newer">
-      <p>-</p>
-    </div>
+    <a
+      href="/posts/brbbot-analysis/"
+      class="btn btn-outline-primary"
+      aria-label="Newer"
+    >
+      <p>Brbbot: Full Malware analysis</p>
+    </a>
   
 </nav>
 
