@@ -31,7 +31,7 @@ also, while searching resources, i found this, it may be related to the `brbbotc
 
 ### Network analysis & C2 communication
 after a couple of minuets 
-![image](/assets/images/brbbot/nt1.PNG)
+![image](/assets/images/brbbot/nt1.png)
 
 ### Code analysis & Capabilities & Deciphering artifacts
 
