@@ -20,7 +20,7 @@ a lot of networking-related strings. these `encode` ,`sleep` ,`exit` ,`conf` ,`f
 beside, there were encryption-related functions, which means we will have to deal with later.
 
 using procmon, here we can see persistency-related behaviors(setting reg keys etc..), besides that, creating this `brbbotconfig.tmp`.
-![image](/assets/images/brbbot/procmon.PNG)
+![image](/assets/images/brbbot/procmon.png)
 
 and it's most likely encrypted, but we will come to decrypting it later.
 ![image](/assets/images/brbbot/tmpfile.PNG)
