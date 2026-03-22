@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "Brbbot: Full Malware analysis"
-thumbnail: /assets/images/brbbot/kali.PNG
+title: "Brbbot: Full Malware Analysis & Reverse Engineering"
+#image: /assets/images/brbbot/kali.PNG
 date: 2026-03-15 12:00:00 +0200
 categories: [Malware Analysis]
 ---
@@ -37,9 +37,9 @@ we can then set up an http server and pass this `ads.php` to the bot and see wha
 
 
 ### Code analysis & Capabilities
-since we could not tell exactly what `brbbotconfig.tmp` exactly was, i found this a good start.
+since we could not tell what `brbbotconfig.tmp` exactly was, i found this's a good start.
 i then managed to put a bp at `ReadFile` API so i can make sure that it's actually being read.
-```c
+```cpp
 BOOL ReadFile(
   [in]                HANDLE       hFile,
   [out]               LPVOID       lpBuffer,
@@ -51,18 +51,52 @@ BOOL ReadFile(
 one of the parameters passed to `ReadFile` is a Handle to the resource that is being read. and it was `0x14c`
 ![image](/assets/images/brbbot/dbg_hndl.png)
 ![image](/assets/images/brbbot/dbg_hndl2.png)
+i wanted to make sure that it was reading the file and it was a handle to the `brbbootconfig.tmp` file, so i managed to do that using both x32dbg and processhacker, and we're good.
 ![image](/assets/images/brbbot/dbg_hndl3.png)
-<br>i wanted to make sure that it was reading the file and it was a handle to the `brbbootconfig.tmp` file, so i managed to do that using both x32dbg and processhacker, and we're good.
 
 frisking the import table, i found that it was using `CryptyDecrypt` function,which decrypts data that was previously encrypted by using the `CryptEncrypt` function. and after one step over, it was all decrypted.
 ![image](/assets/images/brbbot/dbg_decrypt.png)
 `uri=ads.php;exec=cexe;file=elif;conf=fnoc;exit=tixe;encode=5b;sleep=30000`
 we can assume that these are some bot cmds. the `encode=5b` value, was sort of interesting, seems like it's a key for encoding something, since we still have the encrypted exfiltrated data from the traffic analysis section, now we have a key and encrypted data. by doing some static code analysis, i think we will figure what encryption algorithm was used.  
+<br>
+now its ghidra time, usually when analyzing malware samples such this, i search **Symbolic References**,and i can tell, it's pretty useful. <br>
+![image](/assets/images/brbbot/ghidra.png)
+
+i first found a reference to Reg Keys Apis such `RegOpenKeyExA`, `RegSetValueExA`. i knew this have to do with *persistency*, so i navigated to them.
+and as was expected, here it opens `\Microsoft\Windows\CurrentVersion\Run` key, and passes `brbbot`
+![image](/assets/images/brbbot/ghidra_1.png) <br>
+
+also, i found many references to Resource-related Apis such as `FindRecource`, so i went and navigated through them.
+ ![image](/assets/images/brbbot/ghidra_2.png)
+earlier we found that `CONFIG` Resource, we assumed that it has something to do with `brbbotconfig.tmp`, and this confirms that. it loads that waht it called `CONFIG` resource, and drops it to the disk under the name `brbbotconfig` that we decrypted later.
+
+we noticed later at the traffic analysis section that it's exfiltrating our system's processes (process enumeration), it was doing that by getting a handle to `ntdll.dll` using `GetModuleHandleA`.
+```cpp
+HMODULE GetModuleHandleA(
+  [in, optional] LPCSTR lpModuleName
+);
+``` 
+it takes the name of a loaded module as a parameter. in our case it was `ZwQuerySystemInformation`.
+![image](/assets/images/brbbot/ghidra_3.png)
+
+this technique called **Dynamic API Resolution**, 
+where instead of calling `ZwQuerySystemInformation(...)` directly, the malware does this 
+```cpp
+hModule = GetModuleHandleA("ntdll.dll");
+func = GetProcAddress(hModule, "ZwQuerySystemInformation");
+func(...);
+```
+![image](/assets/images/brbbot/DAR.png)
+_Dynamic API Resolution_
+
 
 now, it's time for some decrypting. using cyberchef, converted these hex to bytes, then xored it with the `0x5b` key. 
 ![image](/assets/images/brbbot/cyberchef.png)
 looks interesting, here it's collecting all the processes, it's quite obvious why.
 this is a common bots behavior, to see if there any exploitable apps, useful apps that helps with post-exploitation etc..
+
+
+
 
 ### Brbbot command and control
 in order to make it execute our `ads.php`, i managed to set up an apache server and i then created an `ads.php` that contains `cexe c:\windows\notepad.exe`.
@@ -72,4 +106,4 @@ also i made sure that my kali machine was set as the DNS server.
 the ip addresses here are different from before, thats because i had to make a vm virtual network, in order to set all of this up.
 
 ![image](/assets/images/brbbot/kali3.png)
-indeed! what happened that, instead of reaching for the c2 server and its `ads.php`, it been redirected to our kali machine, reached for our `ads.php` file and executed the cmd that we did set :DD. and there we go it executed the command and opened the `notedpad.exe` as a child process successfully.
+indeed! now we control the malware. what happened that, instead of reaching for the c2 server and its `ads.php`, it been redirected to our kali machine, reached for our `ads.php` file and executed the cmd that we did set :DD. and there we go it executed the command and opened the `notedpad.exe` as a child process successfully.
