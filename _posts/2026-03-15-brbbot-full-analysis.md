@@ -57,8 +57,14 @@ i wanted to make sure that it was reading the file and it was a handle to the `b
 frisking the import table, i found that it was using `CryptyDecrypt` function,which decrypts data that was previously encrypted by using the `CryptEncrypt` function. and after one step over, it was all decrypted.
 ![image](/assets/images/brbbot/dbg_decrypt.png)
 `uri=ads.php;exec=cexe;file=elif;conf=fnoc;exit=tixe;encode=5b;sleep=30000`
-we can assume that these are some bot cmds. the `encode=5b` value, was sort of interesting, seems like it's a key for encoding something, since we still have the encrypted exfiltrated data from the traffic analysis section, now we have a key and encrypted data. by doing some static code analysis, i think we will figure what encryption algorithm was used.  
+we can assume that these are some bot cmds. the `encode=5b` value, was sort of interesting, seems like it's a key for encoding something.
+
+since we still have the encrypted exfiltrated data, using cyberchef, converted these hex to bytes, then xored it with the `0x5b` key (commonly used in these scenarios). 
+![image](/assets/images/brbbot/cyberchef.png)
+looks interesting, here it's collecting all the processes (that'll be covered at code analysis section), it's quite obvious why.
+this is a common bots behavior, to see if there any exploitable apps, useful apps that helps with thr post-exploitation etc..
 <br>
+
 now its ghidra time, usually when analyzing malware samples such this, i search **Symbolic References**,and i can tell, it's pretty useful. <br>
 ![image](/assets/images/brbbot/ghidra.png)
 
@@ -88,15 +94,6 @@ func(...);
 ```
 ![image](/assets/images/brbbot/DAR.png)
 _Dynamic API Resolution_
-
-
-now, it's time for some decrypting. using cyberchef, converted these hex to bytes, then xored it with the `0x5b` key. 
-![image](/assets/images/brbbot/cyberchef.png)
-looks interesting, here it's collecting all the processes, it's quite obvious why.
-this is a common bots behavior, to see if there any exploitable apps, useful apps that helps with post-exploitation etc..
-
-
-
 
 ### Brbbot command and control
 in order to make it execute our `ads.php`, i managed to set up an apache server and i then created an `ads.php` that contains `cexe c:\windows\notepad.exe`.
